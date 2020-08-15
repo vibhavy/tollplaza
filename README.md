@@ -80,8 +80,8 @@ http code 400
 ```
 http code 200
 { 
-    code: 200,
     data: {
+        code: 200,
         message: '',
         trips: []
     }

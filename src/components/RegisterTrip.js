@@ -36,22 +36,26 @@ class RegisterTrip extends React.Component {
         const res = await postData('/trips', payload);
 
         // if error is present
-        if(res && res.error && res.error.message) {
-            this.setState({
-                alert_type: 'error',
-                message: res.error.message
-            });
+        if(res && res.data) {
+
+            // if error is present
+            if(res.data.error) {
+                this.setState({
+                    alert_type: 'error',
+                    message: res.data.error.message ? res.data.error.message : 'something went wrong'
+                });
+            }
+  
+            // store data into state
+            if(res.data.trips) {
+                this.setState({
+                    alert_type: 'success',
+                    message: res.data.message,
+                    trips: res.data.trips
+                });
+            }
         }
         
-        // store data into state
-        if(res&& res.data && res.data.trips) {
-            this.setState({
-                alert_type: 'success',
-                message: res.data.message,
-                trips: res.data.trips
-            });
-        }
-
     }
 
     async componentDidMount() {

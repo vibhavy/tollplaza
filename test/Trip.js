@@ -14,8 +14,8 @@ describe("TRIPS", function(){
         .post(baseUrl)
         .send(payload)
         .end((err, result) => {
-        result.body.code.should.eq(140);
-        console.log("Errors:", result.body.error.message);
+        result.body.data.code.should.eq(140);
+        console.log("Errors:", result.body.data.error.message);
         done();
         });
     });

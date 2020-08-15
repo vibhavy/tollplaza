@@ -21,8 +21,10 @@ router.post('/trips', async (req, res, next) => {
     // registeration number is not present, return error
     if(!data.registration_number || data.registration_number.length === 0) {
         res.json({
-            code: 140,
-            error: { message: 'registration number is required' }
+            data: {
+                code: 140,
+                error: { message: 'registration number is required' }
+            }
         });
         return;
     }
@@ -30,8 +32,10 @@ router.post('/trips', async (req, res, next) => {
     // visit_type is not present, return error
     if(!data.visit_type || data.visit_type.length === 0) {
         res.json({
-            code: 140,
-            error: { message: 'visit type is required' }
+            data: {
+                code: 140,
+                error: { message: 'visit type is required' }
+            }
         });
         return;
     }
@@ -40,12 +44,15 @@ router.post('/trips', async (req, res, next) => {
     let allowedVisitTypes = ['round-trip','one-way'];
     if(!allowedVisitTypes.includes(data.visit_type)) {
         res.json({
-            code: 130,
-            error: { message: 'visit type is invalid' }
+            data: {
+                code: 130,
+                error: { message: 'visit type is invalid' }
+            }
         });
         return;
     }
 
+    // update amount based on the visit type
     data.amount = data.visit_type === 'round-trip' ? 200 : 100;
 
     let response = await Trip.create(data);
