@@ -6,9 +6,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "assert": "^2.0.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mocha": "^8.1.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
@@ -21,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon ./server/index",
-    "migration": "node ./server/migration"
+    "migration": "node ./server/migration",
+    "server-test": "mocha --exit"
   },
   "eslintConfig": {
     "extends": "react-app"

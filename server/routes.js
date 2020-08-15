@@ -7,6 +7,8 @@ router.get('/trips', async (req, res, next) => {
     let response = await Trip.get();
     if(response.error)
         response.code = 160;
+    else
+        response.code = 200;
     res.json({data: response});
 });
 
@@ -49,6 +51,8 @@ router.post('/trips', async (req, res, next) => {
     let response = await Trip.create(data);
     if(response.error)
         response.code = 160;
+    else
+        response.code = 200;
     res.json({data: response});
 });
 
