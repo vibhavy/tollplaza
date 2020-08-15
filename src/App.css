@@ -71,3 +71,19 @@ html, body, #root {
   border-bottom: 2px solid #9e4242;
   border-right: 2px solid #9e4242; 
 }
+
+.alert {
+  text-transform: capitalize;
+  font-weight: 500;
+  margin: 0px;
+  margin-top: 10px;
+  height: 25px;
+}
+
+.alert.error {
+  color: #b72d2d;
+}
+
+.alert.success{
+  color: #66c164;
+}

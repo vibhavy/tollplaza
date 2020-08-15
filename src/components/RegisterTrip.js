@@ -8,7 +8,9 @@ class RegisterTrip extends React.Component {
         this.state = {
             registration_number: '',
             visit_type: 'one-way',
-            trips: []
+            trips: [],
+            alert_type: '',
+            message: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,10 +34,23 @@ class RegisterTrip extends React.Component {
 
         // get trip information
         let res = await postData('/trips', payload);
+
+        console.log(res);
+        // if error is present
+        if(res && res.error && res.error.message) {
+            this.setState({
+                alert_type: 'error',
+                message: res.error.message
+            });
+        }
         
         // store data into state
         if(res&& res.data && res.data.trips) {
-            this.setState({trips: res.data.trips});
+            this.setState({
+                alert_type: 'success',
+                message: res.data.message,
+                trips: res.data.trips
+            });
         }
 
     }
@@ -61,6 +76,8 @@ class RegisterTrip extends React.Component {
     }
 
     addForm() {
+        let alertClass = 'alert';
+        alertClass += this.state.alert_type.length > 0 ? ' '+this.state.alert_type : '';
         return(
             <div>
                 <input type='text' name='registration_number' value={this.state.registration_number} onChange={this.handleChange} className='field--input' placeholder='Vehicle Registration No.'/>
@@ -69,6 +86,7 @@ class RegisterTrip extends React.Component {
                     <option value="round-trip">Round Trip</option>
                 </select>
                 <button type='button' className='btn btn-red' onClick={this.handleSubmit}>Add Vehicle</button>
+                <p className={alertClass}>{this.state.message}</p>
             </div>
         );
     }
