@@ -1,68 +1,143 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tollplaza Application
 
-## Available Scripts
+Application for the basic implementation of Tollplaza entry of Vehicles.
 
-In the project directory, you can run:
+## Stack
 
-### `npm start`
+**Frontend:** Reactjs
+**Backend:** Nodejs(express)
+**Database:** Mysql
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Step 1.** Once cloned the project, use below code to install all the dependencies.
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Step 2.** Create config.js file inside the directory **'server'**.
 
-### `npm run build`
+```Javascript
+module.exports = {
+    mysql: {
+        host: '<host name>',
+        username: '<user>',
+        password: '<password>',
+        db: '<db name>'
+    }
+};
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Step 3.** Install required Schema to store information into database.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+npm run migration
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+*To run the Tests* 
+```bash
+npm test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+*To Start Frontend*
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*To Start Server*
+```bash
+npm run server
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# API Documentation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Response Codes
 
-## Learn More
+```
+200: Success
+400: Bad request
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Example Error Response
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+http code 400
+{ 
+    code: 201,
+    error: {
+        "message": "registration_number is required"
+    }
+}
+```
 
-### Code Splitting
+## Example Success Response
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
+http code 200
+{ 
+    code: 200,
+    data: {
+        trips: []
+    }
+}
+```
 
-### Analyzing the Bundle Size
+## Get Trips
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Returns all the trips of current date
 
-### Making a Progressive Web App
+### Request
+```
+GET /trips HTTP/1.1
+Content-Type: application/json
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Response
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+{ 
+    code: 200,
+    data: {
+        trips: []
+    }
+}
+```
 
-### Advanced Configuration
+## Create Trip Entry
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Create new Trip entry and Returns all the trips of current date
 
-### Deployment
+### Request
+```
+GET /trips HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+{
+    "registration_number": "foo",
+    "visit_type": "round-trip" or "one-way" 
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Response
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+{ 
+    code: 200,
+    data: {
+        trips: []
+    }
+}
+```
 
-### `npm run build` fails to minify
+# Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Please make sure to update tests as appropriate.
+
+# License
+[MIT](https://choosealicense.com/licenses/mit/)
