@@ -43,7 +43,7 @@ class Trip {
             // check if the vehicle is already registered for round trip and its comming back
             // update it exit date
             const commingBack = await this.updateExitDate(data.registration_number);
-            let message = 'trip information updated';
+            let message = 'round trip marked completed';
 
             // vehicle is not comming back
             if(!commingBack) {
