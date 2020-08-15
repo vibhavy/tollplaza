@@ -42,7 +42,7 @@ npm run migration
 npm start
 ```
 
-*To run Test for API Endpoints* 
+*To run Tests for API Endpoints* 
 ```bash
 npm run server-test
 ```
