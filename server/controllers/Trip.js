@@ -26,7 +26,7 @@ class Trip {
             where date(entry_date)=date(NOW())
             order by id desc`); 
             return { 
-                message: 'trips information fetched',
+                message: 'available trips fetched',
                 trips: rows 
             };
 
@@ -50,7 +50,7 @@ class Trip {
 
                 message = 'new trip information added';
 
-                // if one way trip, by default exit date will be requivalent to entry date
+                // if one way trip, by default exit date will be equivalent to entry date
                 if(data.visit_type === 'one-way') {
                     await DB.query('insert into trips (registration_number, amount, visit_type, entry_date, exit_date) values (?, ?, ?, NOW(), NOW())',[data.registration_number, data.amount, data.visit_type]);
                 }
