@@ -13,18 +13,20 @@ class Trip {
         try {
 
             // fetch vehicles from table vehicles
-            const [rows] = await DB.query(`select 
-                id,
-                registration_number, 
-                amount, 
-                visit_type, 
-                date_format(entry_date,"%Y-%m-%d") as entry_date, 
-                time(entry_date) as entry_time,
-                date_format(exit_date,"%Y-%m-%d") as exit_date, 
-                time(exit_date) as exit_time
-            from trips 
-            where date(entry_date)=date(NOW())
-            order by id desc`); 
+            const [rows] = await DB.query(`
+                select 
+                    id,
+                    registration_number, 
+                    amount, 
+                    visit_type, 
+                    date_format(entry_date,"%Y-%m-%d") as entry_date, 
+                    time(entry_date) as entry_time,
+                    date_format(exit_date,"%Y-%m-%d") as exit_date, 
+                    time(exit_date) as exit_time
+                from trips 
+                where date(entry_date)=date(NOW())
+                order by id desc
+            `); 
             return { 
                 message: 'available trips fetched',
                 trips: rows 
