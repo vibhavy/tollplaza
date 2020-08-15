@@ -25,7 +25,10 @@ class Trip {
             from trips 
             where date(entry_date)=date(NOW())
             order by id desc`); 
-            return { trips: rows };
+            return { 
+                message: 'trips information fetched',
+                trips: rows 
+            };
 
         } catch(err) {
             return { error: 'server error' }
