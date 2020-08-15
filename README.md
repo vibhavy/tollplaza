@@ -82,6 +82,7 @@ http code 200
 { 
     code: 200,
     data: {
+        message: '',
         trips: []
     }
 }
@@ -131,6 +132,7 @@ Content-Type: application/json
 { 
     code: 200,
     data: {
+        message: '',
         trips: []
     }
 }
