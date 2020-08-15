@@ -54,11 +54,13 @@ npm run server
 
 # API Documentation
 
-## Response Codes
+## Error Codes Details
 
 ```
+130: Parameter Error
+140: Item Missing
+160: Server Error
 200: Success
-400: Bad request
 ```
 
 ## Example Error Response

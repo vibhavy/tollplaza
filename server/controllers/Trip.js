@@ -28,7 +28,7 @@ class Trip {
             return { trips: rows };
 
         } catch(err) {
-            return { error: err.message }
+            return { error: 'server error' }
         }
 
     }
@@ -60,22 +60,28 @@ class Trip {
             return await this.get();
 
         } catch(err) {
-            return { error: err.message }
+            return { error: 'server error' }
         }
 
     }
 
     async updateExitDate(registration_number) {
 
-        // fetch vehicles from table vehicles
-        const [rows] = await DB.query(`select id from trips where registration_number=? and exit_date is null and date(entry_date)=date(NOW())`, [registration_number]); 
-        
-        // if id is present, update the exit date to current time
-        if(rows[0] && rows[0].id) {
-            await DB.query(`update trips set exit_date=NOW() where id=?`, [rows[0].id])
-            return true;
+        try {
+
+            // fetch vehicles from table vehicles
+            const [rows] = await DB.query(`select id from trips where registration_number=? and exit_date is null and date(entry_date)=date(NOW())`, [registration_number]); 
+            
+            // if id is present, update the exit date to current time
+            if(rows[0] && rows[0].id) {
+                await DB.query(`update trips set exit_date=NOW() where id=?`, [rows[0].id])
+                return true;
+            }
+            return false;
+
+        } catch(err) {
+            return { error: 'server error' }
         }
-        return false;
 
     }
 
