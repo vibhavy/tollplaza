@@ -33,9 +33,8 @@ class RegisterTrip extends React.Component {
         };
 
         // get trip information
-        let res = await postData('/trips', payload);
+        const res = await postData('/trips', payload);
 
-        console.log(res);
         // if error is present
         if(res && res.error && res.error.message) {
             this.setState({
@@ -58,7 +57,7 @@ class RegisterTrip extends React.Component {
     async componentDidMount() {
 
         // get trip information
-        let res = await getData('/trips');
+        const res = await getData('/trips');
 
         // store data into state
         if(res&& res.data && res.data.trips) {
