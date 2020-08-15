@@ -40,9 +40,12 @@ class Trip {
             // check if the vehicle is already registered for round trip and its comming back
             // update it exit date
             const commingBack = await this.updateExitDate(data.registration_number);
+            let message = 'trip information updated';
 
             // vehicle is not comming back
             if(!commingBack) {
+
+                message = 'new trip information added';
 
                 // if one way trip, by default exit date will be requivalent to entry date
                 if(data.visit_type === 'one-way') {
@@ -53,11 +56,14 @@ class Trip {
                 if(data.visit_type === 'round-trip') {
                     await DB.query('insert into trips (registration_number, amount, visit_type) values (?, ?, ?)',[data.registration_number, data.amount, data.visit_type]);
                 }
-
+                
             }
 
+            let res = await this.get();
+            res.message = message;
+
             // return all trips 
-            return await this.get();
+            return res;
 
         } catch(err) {
             return { error: 'server error' }
