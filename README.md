@@ -37,14 +37,14 @@ npm run migration
 
 ## Usage
 
-*To run the Tests* 
-```bash
-npm test
-```
-
 *To Start Frontend*
 ```bash
 npm start
+```
+
+*To run Test for API Endpoints* 
+```bash
+npm run server-test
 ```
 
 *To Start Server*
