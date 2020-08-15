@@ -16,6 +16,7 @@ class TripListItem extends React.Component {
     renderItem(item) {
         return (
             <div key={item.id} className='item--single'>
+                <h5>TRIP ID: {item.id}</h5>
                 <p>Vehicle: <span>{item.registration_number}</span></p>
                 <p>Type: <span>{item.visit_type}</span></p>
                 <p>Amount: <span>{item.amount}</span></p>

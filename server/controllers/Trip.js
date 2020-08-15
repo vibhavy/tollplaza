@@ -43,7 +43,7 @@ class Trip {
             // check if the vehicle is already registered for round trip and its comming back
             // update it exit date
             const commingBack = await this.updateExitDate(data.registration_number);
-            let message = 'round trip marked completed';
+            let message = commingBack;
 
             // vehicle is not comming back
             if(!commingBack) {
@@ -84,7 +84,7 @@ class Trip {
             // if id is present, update the exit date to current time
             if(rows[0] && rows[0].id) {
                 await DB.query(`update trips set exit_date=NOW() where id=?`, [rows[0].id])
-                return true;
+                return `round trip, ID: ${rows[0].id} has been marked completed`;
             }
             return false;
 

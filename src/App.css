@@ -47,6 +47,11 @@ html, body, #root {
   padding: 10px;
 }
 
+
+.item--single h5 {
+  margin: 0px 0px 10px 0px;
+}
+
 .item--single p {
   margin: 0px;
   margin-bottom: 5px;
