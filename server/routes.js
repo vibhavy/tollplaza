@@ -20,7 +20,7 @@ router.post('/trips', async (req, res, next) => {
     if(!data.registration_number || data.registration_number.length === 0) {
         res.json({
             code: 140,
-            error: { message: 'registration_number is required' }
+            error: { message: 'registration number is required' }
         });
         return;
     }
@@ -29,7 +29,7 @@ router.post('/trips', async (req, res, next) => {
     if(!data.visit_type || data.visit_type.length === 0) {
         res.json({
             code: 140,
-            error: { message: 'visit_type is required' }
+            error: { message: 'visit type is required' }
         });
         return;
     }
@@ -39,7 +39,7 @@ router.post('/trips', async (req, res, next) => {
     if(!allowedVisitTypes.includes(data.visit_type)) {
         res.json({
             code: 130,
-            error: { message: 'visit_type is invalid' }
+            error: { message: 'visit type is invalid' }
         });
         return;
     }
